@@ -19,4 +19,10 @@ package object xmacs {
 
   type Long                  = scala.Long
   val  Long: scala.Long.type = scala.Long
+
+  type String = java.lang.String
+  type NullPointerException = java.lang.NullPointerException
+  type IllegalArgumentException = java.lang.IllegalArgumentException
+  type RuntimeException = java.lang.RuntimeException
+  type Error = java.lang.Error
 }

@@ -1,9 +1,10 @@
 
 name := "sguava"
 version := "0.1.0-SNAPSHOT"
-scalaVersion := "2.13.1"
+// scalaVersion := "2.13.1"
+scalaVersion := "0.22.0-RC1"
 
-scalacOptions := Seq("-Yno-imports", "-Yimports:java.lang")
+scalacOptions := Seq("-Yno-predef")
 
 libraryDependencies ++= Seq(
   // "org.scala-lang.modules" %% "scala-java8-compat" % "0.9.1",
