@@ -80,6 +80,8 @@ object Lists {
     // Avoid integer overflow when a large array is passed in
     val capacity = computeArrayListCapacity(elements.length)
     val list = new ArrayList[T](capacity)
+
+    // TODO: should not depend on scala.collection
     elements.foreach(list.add)
     list
   }
