@@ -1,8 +1,7 @@
-
 name := "sguava"
 version := "0.1.0-SNAPSHOT"
 // scalaVersion := "2.13.1"
-scalaVersion := "0.22.0-RC1"
+scalaVersion := System.getProperty("scala.version", "0.22.0-RC1")
 
 scalacOptions := Seq("-Yno-predef")
 

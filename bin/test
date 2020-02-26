@@ -1,0 +1,7 @@
+#!/bin/bash
+
+list="0.22.0-RC1 2.13.1 2.12.10"
+for v in $list;
+do
+  sbt test -Dscala.version=$v
+done
