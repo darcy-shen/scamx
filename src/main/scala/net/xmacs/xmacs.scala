@@ -4,6 +4,8 @@ package object xmacs {
   type Array[T]                = scala.Array[T]
   val  Array: scala.Array.type = scala.Array
 
+  type Unit = scala.Unit
+
   type Boolean = scala.Boolean
   type Byte = scala.Byte
   type Char = scala.Char
