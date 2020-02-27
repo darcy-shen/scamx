@@ -4,6 +4,8 @@ package object xmacs {
   type Array[T]                = scala.Array[T]
   val  Array: scala.Array.type = scala.Array
 
+  type Set[T] = java.util.Set[T]
+
   type Unit = scala.Unit
 
   type Boolean = scala.Boolean
@@ -25,4 +27,6 @@ package object xmacs {
   type IllegalArgumentException = java.lang.IllegalArgumentException
   type RuntimeException = java.lang.RuntimeException
   type Error = java.lang.Error
+
+  def ??? : Nothing = throw new NotImplementedError
 }

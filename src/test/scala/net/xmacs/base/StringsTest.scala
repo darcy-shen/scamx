@@ -19,6 +19,7 @@ package net.xmacs.base
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
+import scala.language.implicitConversions
 
 class StringsTest extends AnyFunSuite with Matchers {
   test("padStart: noPadding") {

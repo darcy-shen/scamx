@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sbt -Dscala.version=0.22.0-RC1 $@
