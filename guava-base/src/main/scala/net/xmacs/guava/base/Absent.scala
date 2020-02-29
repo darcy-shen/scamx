@@ -13,7 +13,7 @@
  * the License.
  */
 
-package net.xmacs.base
+package net.xmacs.guava.base
 
 import java.util.function.Function
 

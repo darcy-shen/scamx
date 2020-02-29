@@ -12,7 +12,7 @@
  * the License.
  */
 
-package net.xmacs.util.concurrent
+package net.xmacs.guava.util.concurrent
 
 import java.util.concurrent.Callable
 

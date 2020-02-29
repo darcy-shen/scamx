@@ -15,9 +15,12 @@ lazy val root = (project in file("."))
   .aggregate(
     scamx_core,
     guava_base,
+    guava_primitives,
+    guava_collect,
+    guava_concurrent
   )
   .settings(
-    name := "Binding-SemanticUI"
+    commonSettings
   )
 
 lazy val scamx_core = (project in file("scamx-core"))
@@ -27,14 +30,17 @@ lazy val guava_base = (project in file("guava-base"))
   .settings(commonSettings)
   .dependsOn(scamx_core)
 
+lazy val guava_primitives = (project in file("guava-primitives"))
+  .settings(commonSettings)
+  .dependsOn(scamx_core)
+
 lazy val guava_collect = (project in file("guava-collect"))
   .settings(commonSettings)
+  .dependsOn(guava_base, guava_primitives)
 
 lazy val guava_concurrent = (project in file("guava-concurrent"))
   .settings(commonSettings)
-
-lazy val guava_primitives = (project in file("guava-primitives"))
-  .settings(commonSettings)
+  .dependsOn(guava_base)
 
 // Set to false or remove if you want to show stubs as linking errors
 // nativeLinkStubs := true

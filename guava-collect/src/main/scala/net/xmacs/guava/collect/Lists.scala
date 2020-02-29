@@ -14,15 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.xmacs.collect
+package net.xmacs.guava.collect
 
 import net.xmacs._
 
 import java.util.{ArrayList, Collections}
 import scala.Predef.require
 
-import net.xmacs.base.Preconditions._
-import net.xmacs.primitives.Ints
+import net.xmacs.guava.base.Preconditions._
+import net.xmacs.guava.primitives.Ints
 
 object Lists {
   // ArrayList

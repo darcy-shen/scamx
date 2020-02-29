@@ -12,12 +12,11 @@
  * the License.
  */
 
-package net.xmacs.base
+package net.xmacs.guava.base
 
 import java.util.stream.IntStream
 
 import net.xmacs._
-import net.xmacs.base.Platform
 
 /**
   * Static utility methods pertaining to {@code String} or {@code CharSequence} instances.

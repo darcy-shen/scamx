@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008 The Guava Authors
+ *               2020 Darcy Shen
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -12,7 +13,7 @@
  * the License.
  */
 
-package net.xmacs.primitives
+package net.xmacs.guava.primitives
 
 import net.xmacs._
 

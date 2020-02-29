@@ -12,7 +12,7 @@
  * the License.
  */
 
-package net.xmacs.base
+package net.xmacs.guava.base
 
 import net.xmacs._
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package net.xmacs.base
+package net.xmacs.guava.base
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
