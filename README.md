@@ -16,6 +16,9 @@ A collection of libraries for full stack Scala matrix.
   - guava-concurrent
   - guava-primitives
   
+## Coding Style
+DO NOT DEPEND ON THE **Scala Standard Library**.
+  
 ## Switching Scala Versions
 ```
 sbt -Dscala.version=0.22.0-RC1
