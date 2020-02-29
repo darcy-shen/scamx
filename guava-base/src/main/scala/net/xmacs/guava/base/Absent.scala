@@ -15,9 +15,12 @@
 
 package net.xmacs.guava.base
 
+import java.util.Collections
 import java.util.function.Function
 
 import net.xmacs._
+import Preconditions.checkNotNull
+
 
 /** Implementation of an {@link Optional} not containing a reference. */
 final class Absent[T] extends Optional[T] {
@@ -29,15 +32,18 @@ final class Absent[T] extends Optional[T] {
 
   override def orNull: T = null.asInstanceOf[T]
 
-  override def asSet: Set[T] = ???
+  override def asSet: Set[T] = Collections.emptySet()
 
-  override def transform[V](function: Function[T, V]): Optional[V] = ???
+  override def transform[V](function: Function[T, V]): Optional[V] = {
+    checkNotNull(function)
+    Optional.absent[V]
+  }
 
-  override def equals(obj: Any): Boolean = ???
+  override def equals(obj: Any): Boolean = (obj == this)
 
-  override def hashCode(): Int = ???
+  override def hashCode: Int = 0x79a31aac
 
-  override def toString: String = ???
+  override def toString: String = "Optional.absent()"
 }
 
 object Absent {

@@ -16,6 +16,7 @@
 package net.xmacs.guava.base
 
 import net.xmacs._
+import Preconditions.checkNotNull
 
 /**
   * An immutable object that may contain a non-null reference to another object. Each instance of
@@ -230,7 +231,7 @@ abstract class Optional[T] extends Serializable {
     * <p><b>Comparison to {@code java.util.Optional}:</b> this class leaves the specific choice of
     * hash code unspecified, unlike the Java 8 equivalent.
     */
-  def hashCode(): Int
+  def hashCode: Int
 
   /**
     * Returns a string representation for this instance.
@@ -238,7 +239,7 @@ abstract class Optional[T] extends Serializable {
     * <p><b>Comparison to {@code java.util.Optional}:</b> this class leaves the specific string
     * representation unspecified, unlike the Java 8 equivalent.
     */
-  def toString(): String
+  def toString: String
 }
 
 object Optional {
@@ -283,4 +284,28 @@ object Optional {
     * @since 11.0 (generics widened in 13.0)
     */
   // def presentInstances(optionals: )
+
+  /**
+    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that
+    * reference; otherwise returns {@link Optional#absent}.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's
+    * {@code Optional.ofNullable}.
+    */
+  def fromNullable[T](nullableReference: T): Optional[T] = {
+    if (nullableReference == null) Optional.absent[T]
+    else new Present(nullableReference)
+  }
+
+  /**
+    * Returns an {@code Optional} instance containing the given non-null reference. To have {@code
+    * null} treated as {@link #absent}, use {@link #fromNullable} instead.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> no differences.
+    *
+    * @throws NullPointerException if { @code reference} is null
+    */
+  def of[T](reference: T): Optional[T] = {
+    new Present[T](checkNotNull(reference))
+  }
 }
