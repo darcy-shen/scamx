@@ -5,6 +5,7 @@ package object xmacs {
   val  Array: scala.Array.type = scala.Array
 
   type Set[T] = java.util.Set[T]
+  type List[T] = java.util.List[T]
 
   type Unit = scala.Unit
 
@@ -12,6 +13,7 @@ package object xmacs {
   type Byte = scala.Byte
   type Char = scala.Char
   type Double = scala.Double
+  type Any = scala.Any
 
   type Short                   = scala.Short
   val  Short: scala.Short.type = scala.Short

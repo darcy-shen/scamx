@@ -109,6 +109,66 @@ abstract class Optional[T] extends Serializable {
   def get: T
 
   /**
+    * Returns the contained instance if it is present; {@code defaultValue} otherwise. If no default
+    * value should be required because the instance is known to be present, use {@link #get()}
+    * instead. For a default value of {@code null}, use {@link #orNull}.
+    *
+    * <p>Note about generics: The signature {@code public T or(T defaultValue)} is overly
+    * restrictive. However, the ideal signature, {@code public <S super T> S or(S)}, is not legal
+    * Java. As a result, some sensible operations involving subtypes are compile errors:
+    *
+    * <pre>{@code
+    * Optional<Integer> optionalInt = getSomeOptionalInt();
+   * Number value = optionalInt.or(0.5); // error
+   *
+   * FluentIterable<? extends Number> numbers = getSomeNumbers();
+   * Optional<? extends Number> first = numbers.first();
+   * Number value = first.or(0.5); // error
+   * }</pre>
+    *
+    * <p>As a workaround, it is always safe to cast an {@code Optional<? extends T>} to {@code
+    * Optional<T>}. Casting either of the above example {@code Optional} instances to {@code
+    * Optional<Number>} (where {@code Number} is the desired output type) solves the problem:
+    *
+    * <pre>{@code
+    * Optional<Number> optionalInt = (Optional) getSomeOptionalInt();
+   * Number value = optionalInt.or(0.5); // fine
+   *
+   * FluentIterable<? extends Number> numbers = getSomeNumbers();
+   * Optional<Number> first = (Optional) numbers.first();
+   * Number value = first.or(0.5); // fine
+   * }</pre>
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's {@code
+    * Optional.orElse}, but will not accept {@code null} as a {@code defaultValue} ({@link #orNull}
+    * must be used instead). As a result, the value returned by this method is guaranteed non-null,
+    * which is not the case for the {@code java.util} equivalent.
+    */
+  // def or(defaultValue: T): T
+
+  /**
+    * Returns this {@code Optional} if it has a value present; {@code secondChoice} otherwise.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's
+    * {@code Optional} class; write {@code thisOptional.isPresent() ? thisOptional : secondChoice}
+    * instead.
+    */
+  // def or(secondChoice: Optional[T]): Optional[T]
+
+  /**
+    * Returns the contained instance if it is present; {@code supplier.get()} otherwise.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's {@code
+    * Optional.orElseGet}, except when {@code supplier} returns {@code null}. In this case this
+    * method throws an exception, whereas the Java 8 method returns the {@code null} to the caller.
+    *
+    * @throws NullPointerException if this optional's value is absent and the supplier returns { @code
+    * null}
+    */
+  // def or(supplier: Supplier[])
+
+
+  /**
     * Returns the contained instance if it is present; {@code null} otherwise. If the instance is
     * known to be present, use {@link #get()} instead.
     *
@@ -141,6 +201,44 @@ abstract class Optional[T] extends Serializable {
     * @since 11.0
     */
   def asSet: Set[T]
+
+  /**
+    * If the instance is present, it is transformed with the given {@link Function}; otherwise,
+    * {@link Optional#absent} is returned.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's {@code
+    * Optional.map}, except when {@code function} returns {@code null}. In this case this method
+    * throws an exception, whereas the Java 8 method returns {@code Optional.absent()}.
+    *
+    * @throws NullPointerException if the function returns { @code null}
+    * @since 12.0
+    */
+  def transform[V](function: java.util.function.Function[T, V]): Optional[V]
+
+  /**
+    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the
+    * contained references are {@linkplain Object#equals equal} to each other or both are absent.
+    * Note that {@code Optional} instances of differing parameterized types can be equal.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> no differences.
+    */
+  def equals(obj: Any): Boolean
+
+  /**
+    * Returns a hash code for this instance.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this class leaves the specific choice of
+    * hash code unspecified, unlike the Java 8 equivalent.
+    */
+  def hashCode(): Int
+
+  /**
+    * Returns a string representation for this instance.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this class leaves the specific string
+    * representation unspecified, unlike the Java 8 equivalent.
+    */
+  def toString(): String
 }
 
 object Optional {
@@ -170,4 +268,19 @@ object Optional {
   def toJavaUtil[T](googleOptional: Optional[T]): java.util.Optional[T] = {
     googleOptional.toJavaUtil
   }
+
+  /**
+    * Returns the value of each present instance from the supplied {@code optionals}, in order,
+    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are
+    * evaluated lazily.
+    *
+    * <p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's
+    * {@code Optional} class; use {@code
+    * optionals.stream().filter(Optional::isPresent).map(Optional::get)} instead.
+    *
+    * <p><b>Java 9 users:</b> use {@code optionals.stream().flatMap(Optional::stream)} instead.
+    *
+    * @since 11.0 (generics widened in 13.0)
+    */
+  // def presentInstances(optionals: )
 }

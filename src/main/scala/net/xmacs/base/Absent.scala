@@ -15,6 +15,8 @@
 
 package net.xmacs.base
 
+import java.util.function.Function
+
 import net.xmacs._
 
 /** Implementation of an {@link Optional} not containing a reference. */
@@ -28,6 +30,14 @@ final class Absent[T] extends Optional[T] {
   override def orNull: T = null.asInstanceOf[T]
 
   override def asSet: Set[T] = ???
+
+  override def transform[V](function: Function[T, V]): Optional[V] = ???
+
+  override def equals(obj: Any): Boolean = ???
+
+  override def hashCode(): Int = ???
+
+  override def toString: String = ???
 }
 
 object Absent {
