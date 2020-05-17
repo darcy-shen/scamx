@@ -19,6 +19,7 @@ import java.util.Collections
 import java.util.function.Function
 
 import net.xmacs._
+import net.xmacs.guava.base.Preconditions.checkNotNull
 
 /**
   * Implementation of an {@link Optional} containing a reference.
@@ -36,6 +37,11 @@ final class Present[T] private[base] (val reference: T) extends Optional[T] {
 
   override def transform[V](function: Function[T, V]): Optional[V] = {
     Optional.fromNullable[V](function.apply(reference))
+  }
+
+  override def or(defaultValue: T): T = {
+    checkNotNull(defaultValue, "use Optional.orNull() instead of Optional.or(null)")
+    reference
   }
 
   override def equals(obj: Any): Boolean = {

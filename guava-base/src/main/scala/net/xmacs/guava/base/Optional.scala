@@ -145,7 +145,7 @@ abstract class Optional[T] extends Serializable {
     * must be used instead). As a result, the value returned by this method is guaranteed non-null,
     * which is not the case for the {@code java.util} equivalent.
     */
-  // def or(defaultValue: T): T
+  def or(defaultValue: T): T
 
   /**
     * Returns this {@code Optional} if it has a value present; {@code secondChoice} otherwise.

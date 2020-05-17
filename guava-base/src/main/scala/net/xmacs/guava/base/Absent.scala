@@ -39,6 +39,10 @@ final class Absent[T] extends Optional[T] {
     Optional.absent[V]
   }
 
+  override def or(defaultValue: T): T = {
+    checkNotNull[T](defaultValue, "use Optional.orNull() instead of Optional.or(null)")
+  }
+
   override def equals(obj: Any): Boolean = (obj == this)
 
   override def hashCode: Int = 0x79a31aac

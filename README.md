@@ -5,15 +5,16 @@ A collection of libraries for full stack Scala matrix.
   + 8
   + 11
 + Scala
-  + 0.22.0-RC1
-  + 2.13.1 (default)
-  + 2.12.10
+  + 0.24.0-RC1
+  + 2.13.2 (default)
+  + 2.12.11
   
 ## Libraries
 + Guava re-implemented in Scala
   - guava-base
   - guava-collect
-  - guava-concurrent
+  - guava-concurrent (JVM-only)
+  - guava-math
   - guava-primitives
   
 ## Coding Style
